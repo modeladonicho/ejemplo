@@ -29,13 +29,13 @@ library(rgeos)
 #You need ALL of them in your working directory to make this work
 #-------------------------------------------------------------------------
 
-maps<-readShapeSpatial("MAMMTERR")#This is SLOOOOOOW
+maps <- readShapeSpatial("MAMMTERR")#This is SLOOOOOOW
 
-proj4string(maps) <-CRS("+proj=longlat +datum=WGS84")
+proj4string(maps) <- CRS("+proj=longlat +datum=WGS84")
 #ensure the projection is correct***This is really important! check your map projection before use!
 
 #If you need to correct the taxonomy so it matches the data:
-maps@data$BINOMIAL<-gsub("Mico argentatus","Callithrix argentata", maps@data$BINOMIAL)
+maps@data$BINOMIAL <- gsub("Mico argentatus","Callithrix argentata", maps@data$BINOMIAL)
 
 #You can plot range maps either individually or on the world map:
 
@@ -51,7 +51,7 @@ plot(maps[which(maps@data$BINOMIAL == "Pan troglodytes"),], add = TRUE, col = "g
 #To look at overlap/intersections between two species:
 #-------------------------------------------------------------------------
 
-intersects<-gIntersection(maps[which(maps@data$BINOMIAL == "Pan troglodytes"),], 
+intersects <- gIntersection(maps[which(maps@data$BINOMIAL == "Pan troglodytes"),], 
 		maps[which(maps@data$BINOMIAL == "Colobus guereza"),])
 
 plot(wrld_simpl)
@@ -67,7 +67,7 @@ plot(intersects, add= TRUE, col = "yellow")
 #-------------------------------------------------------------------------
 #For example, to replace spaces in species names with _ 
 
-maps@data$BINOMIAL<-gsub(" ", "_", maps@data$BINOMIAL)
+maps@data$BINOMIAL <- gsub(" ", "_", maps@data$BINOMIAL)
 
 #-----------------------------------------------
 #Plotting colourful maps of environmental data
@@ -77,9 +77,9 @@ maps@data$BINOMIAL<-gsub(" ", "_", maps@data$BINOMIAL)
 #extract WORLDCLIM data. Object is a RasterStack with a layer for each variable
 #Note you can vary the resolution of the data you extract
 
-bioclim<-getData("worldclim", var = "bio", res = 10)#takes a while the first time
+bioclim <- getData("worldclim", var = "bio", res = 10)#takes a while the first time
 
-bioclim<-unstack(bioclim)#unstacks raster so you can deal with each variable individually
+bioclim <- unstack(bioclim)#unstacks raster so you can deal with each variable individually
 
 plot(bioclim[[6]], zlim=c(-100,250), axes = F, col=rev(heat.colors(25)), ext = matrix(c(150,50,-120,-40), nrow = 2))
 #zlim defines the range of the variable (temperature in this case = bioclim 6)
