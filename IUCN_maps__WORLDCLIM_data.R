@@ -1,10 +1,10 @@
 #Diego J. Lizcano 2015
 
-#This code shows you quickly how to manipulate IUCN Mammal GR maps and also WORLDCLIM env data.
+# This code shows you quickly how to manipulate IUCN Mammal GR maps and also WORLDCLIM env data.
 #Make sure you use the proper citations for the maps and WORLDCLIM if you use this
 
 #-------------------------------------------------------------------------
-#Load required packages
+# Load required packages
 #-------------------------------------------------------------------------
 
 library(maptools)
